@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Tech/Modern Theme */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 13% 18%;
+    
+    /* Brand Colors - Tech Blue/Purple Theme */
+    --primary: 231 81% 90%;
+    --primary-foreground: 224 71% 4%;
+    --primary-glow: 231 81% 85%;
+    --primary-deep: 224 71% 15%;
+    
+    /* Accent Colors */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 224 71% 15%;
+    --accent: 231 45% 92%;
+    --accent-foreground: 224 71% 20%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(231 81% 90%), hsl(250 84% 85%));
+    --gradient-hero: linear-gradient(135deg, hsl(231 81% 90%) 0%, hsl(250 84% 85%) 50%, hsl(270 75% 90%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(231 45% 98%) 100%);
+    --gradient-text: linear-gradient(135deg, hsl(224 71% 15%), hsl(250 65% 25%));
+    
+    /* Shadows with brand colors */
+    --shadow-soft: 0 4px 20px -2px hsl(231 81% 90% / 0.15);
+    --shadow-medium: 0 10px 40px -10px hsl(231 81% 90% / 0.25);
+    --shadow-strong: 0 20px 60px -10px hsl(231 81% 90% / 0.35);
+    --shadow-glow: 0 0 50px hsl(231 81% 90% / 0.3);
+    
+    /* Interactive Elements */
+    --hover-lift: translateY(-2px);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* UI Component Colors */
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 18%;
+    --muted: 231 45% 96%;
+    --muted-foreground: 220 13% 55%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Portfolio Component Styles */
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-deep to-accent-foreground bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-strong hover:-translate-y-1;
+  }
+  
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px hsl(var(--primary) / 0.1);
+  }
+}
