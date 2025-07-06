@@ -3,9 +3,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Zap, TrendingUp, Shield, Film } from "lucide-react";
-import projectGleans from "@/assets/project-gleans.jpg";
-import projectEacel from "@/assets/project-eacel.jpg";
-import projectCircle from "@/assets/project-circle.jpg";
+import projectGleans from "@/assets/project-gleans.png";
+import projectEacel from "@/assets/project-eacel.png";
+import projectCircle from "@/assets/project-circle.png";
+import movieBooking from "@/assets/movie-booking.png";
 
 const Projects = () => {
   const projects = [
@@ -19,7 +20,7 @@ const Projects = () => {
       gradient: "from-blue-500/20 to-purple-500/20"
     },
     {
-      title: "Eacel",
+      title: "Eacel AI",
       description: "Analytics dashboard with AWS integration delivering 45% boost in performance metrics. Built with Next.js featuring comprehensive data visualization and reporting tools.",
       image: projectEacel,
       technologies: ["Next.js", "AWS", "TypeScript", "Chart.js", "React Query"],
@@ -39,7 +40,7 @@ const Projects = () => {
     {
       title: "Movie Booking App",
       description: "Complete movie booking system with seat selection, payment gateway integration, and JWT authentication. Features real-time seat availability and booking management.",
-      image: projectCircle, // Reusing image as placeholder
+      image: movieBooking, // Reusing image as placeholder
       technologies: ["React.js", "Node.js", "JWT", "Payment Gateway", "MongoDB"],
       features: ["Seat selection", "Payment gateway", "JWT authentication", "Real-time updates"],
       icon: <Film className="h-6 w-6" />,
