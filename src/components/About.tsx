@@ -5,8 +5,8 @@ import { MapPin, GraduationCap, Trophy, Globe } from "lucide-react";
 
 const About = () => {
   const skills = [
-    "React.js", "Next.js", "TypeScript", "Redux Toolkit", "Tailwind CSS", 
-    "Shadcn/UI", "Framer Motion", "Material UI", "Jest", "React Testing Library",
+    "React.js", "Next.js", "Javascript", "TypeScript", "Redux Toolkit", "Zustand", "Tailwind CSS", 
+    "Shadcn/UI", "Framer Motion", "Material UI", "Node.js", "Express.js", "MongoDB", "Jest", "React Testing Library",
     "GraphQL", "REST APIs", "Stripe", "Twilio", "Git", "Vercel", "Azure DevOps"
   ];
 

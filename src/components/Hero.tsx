@@ -4,6 +4,13 @@ import { ArrowDown, Mail, Phone, Linkedin, Code } from "lucide-react";
 import profilePhoto from "@/assets/image.png";
 
 const Hero = () => {
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden hero-gradient">
       {/* Background Animation */}
@@ -57,21 +64,29 @@ const Hero = () => {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="flex flex-wrap gap-4 pt-4"
             >
-              <Button 
-                size="lg" 
-                className="bg-primary-deep hover:bg-primary-deep/90 text-white shadow-medium hover:shadow-strong transition-all duration-300"
-              >
-                <Mail className="mr-2 h-4 w-4" />
-                Get In Touch
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-primary-deep text-primary-deep hover:bg-primary-deep hover:text-white transition-all duration-300"
-              >
-                <Code className="mr-2 h-4 w-4" />
-                View Projects
-              </Button>
+              <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                <Button 
+                  size="lg" 
+                  onClick={() => scrollToSection("#contact")}
+                  className="bg-primary-deep hover:bg-primary-deep/90 text-white shadow-medium hover:shadow-strong transition-all duration-300 relative group"
+                >
+                  <Mail className="mr-2 h-4 w-4" />
+                  Get In Touch
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={() => scrollToSection("#projects")}
+                  className="border-primary-deep text-primary-deep hover:bg-primary-deep hover:text-white transition-all duration-300 relative group"
+                >
+                  <Code className="mr-2 h-4 w-4" />
+                  View Projects
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-deep transition-all duration-300 group-hover:w-full" />
+                </Button>
+              </motion.div>
             </motion.div>
 
             {/* Contact Info */}

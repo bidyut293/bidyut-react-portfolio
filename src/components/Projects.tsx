@@ -2,11 +2,12 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Zap, TrendingUp, Shield, Film } from "lucide-react";
+import { ExternalLink, Github, Zap, TrendingUp, Shield, Film, Rocket } from "lucide-react";
 import projectGleans from "@/assets/project-gleans.png";
 import projectEacel from "@/assets/project-eacel.png";
 import projectCircle from "@/assets/project-circle.png";
 import movieBooking from "@/assets/movie-booking.png";
+import pokemon from "@/assets/pokemon.png";
 
 const Projects = () => {
   const projects = [
@@ -17,7 +18,8 @@ const Projects = () => {
       technologies: ["Next.js 14", "TypeScript", "Supabase", "Twilio", "Tailwind CSS"],
       features: ["Real-time notifications", "Responsive UI", "Third-party integrations", "Modern tech stack"],
       icon: <Zap className="h-6 w-6" />,
-      gradient: "from-blue-500/20 to-purple-500/20"
+      gradient: "from-blue-500/20 to-purple-500/20",
+      url: 'https://gleans.me/'
     },
     {
       title: "Eacel AI",
@@ -26,7 +28,8 @@ const Projects = () => {
       technologies: ["Next.js", "AWS", "TypeScript", "Chart.js", "React Query"],
       features: ["Analytics dashboards", "45% performance boost", "AWS integration", "Data visualization"],
       icon: <TrendingUp className="h-6 w-6" />,
-      gradient: "from-green-500/20 to-teal-500/20"
+      gradient: "from-green-500/20 to-teal-500/20",
+      url: 'https://eacel.ai/'
     },
     {
       title: "Circle of Trust",
@@ -35,7 +38,8 @@ const Projects = () => {
       technologies: ["Next.js", "GraphQL", "Stripe", "TypeScript", "Prisma"],
       features: ["Payment integration", "GraphQL API", "Secure transactions", "Financial management"],
       icon: <Shield className="h-6 w-6" />,
-      gradient: "from-purple-500/20 to-pink-500/20"
+      gradient: "from-purple-500/20 to-pink-500/20",
+      url: 'https://www.thecircleof.co.uk/'
     },
     {
       title: "Movie Booking App",
@@ -44,8 +48,20 @@ const Projects = () => {
       technologies: ["React.js", "Node.js", "JWT", "Payment Gateway", "MongoDB"],
       features: ["Seat selection", "Payment gateway", "JWT authentication", "Real-time updates"],
       icon: <Film className="h-6 w-6" />,
-      gradient: "from-red-500/20 to-orange-500/20"
-    }
+      gradient: "from-red-500/20 to-orange-500/20",
+      // url: 'https://www.thecircleof.co.uk/'
+    },
+    {
+    title: "Pokémon Search App",
+    description: "Fast Pokémon search app built in 5 hours using Next.js 14, Tailwind CSS, and Framer Motion. Search and filter Pokémon by name or attributes, view detailed descriptions, with SEO optimization, lazy loading, and dark/light theme support.",
+    image: pokemon, // Placeholder, replace with actual image
+    technologies: ["Next.js 14", "Tailwind CSS", "Framer Motion", "TypeScript"],
+    features: ["Search by name/attributes", "Detailed Pokémon info", "SEO optimization", "Lazy loading", "Dark/light theme", "Mobile responsive"],
+    icon: <Rocket className="h-6 w-6" />,
+    gradient: "from-indigo-500/20 to-cyan-500/20",
+    url: 'https://pokemon-app-pmuz-bidyut293s-projects.vercel.app/', // Replace with actual URL
+    gitUrl: 'https://github.com/bidyut293/pokemon-app'
+  }
   ];
 
   const containerVariants = {
@@ -150,6 +166,8 @@ const Projects = () => {
                     <Button 
                       size="sm" 
                       className="flex-1 bg-primary-deep hover:bg-primary-deep/90 text-white"
+                      
+                      onClick={() => project.url ? window.location.href = project.url : ''}
                     >
                       <ExternalLink className="mr-2 h-4 w-4" />
                       Live Demo
@@ -158,6 +176,7 @@ const Projects = () => {
                       variant="outline" 
                       size="sm" 
                       className="flex-1 border-primary-deep text-primary-deep hover:bg-primary-deep hover:text-white"
+                      onClick={() => project.gitUrl ? window.location.href = project.gitUrl : ''}
                     >
                       <Github className="mr-2 h-4 w-4" />
                       Code

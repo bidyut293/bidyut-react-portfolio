@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Linkedin, Github, Send, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Send, MessageCircle, Code } from "lucide-react";
 
 const Contact = () => {
   const contactInfo = [
@@ -42,9 +42,9 @@ const Contact = () => {
     },
     {
       name: "LeetCode",
-      icon: <Github className="h-5 w-5" />,
+      icon: <Code className="h-5 w-5" />,
       href: "https://leetcode.com/bidyutsamanta",
-      color: "hover:text-orange-600"
+      color: "hover:text-green-600"
     },
     {
       name: "Email",
