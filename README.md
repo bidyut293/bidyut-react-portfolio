@@ -1,6 +1,6 @@
 # 🚀 Bidyut Samanta - Frontend Developer Portfolio
 
-Welcome to my personal developer portfolio! I’m a Frontend Developer with 3.5+ years of experience building responsive, accessible, and scalable web applications using modern technologies like React, Next.js, TypeScript, and Tailwind CSS. This portfolio showcases my featured projects, skills, and contributions in the web development space.
+Welcome to my personal developer portfolio! I’m a Frontend Developer with around 4 years of experience building responsive, accessible, and scalable web applications using modern technologies like React, Next.js, TypeScript, and Tailwind CSS. This portfolio showcases my featured projects, skills, and contributions in the web development space.
 
 ---
 

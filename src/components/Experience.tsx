@@ -90,7 +90,7 @@ const Experience = () => {
         >
           <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-4">Professional Experience</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            3.5 years of building exceptional web applications across diverse industries and company sizes.
+            Around 4 years of building exceptional web applications across diverse industries and company sizes.
           </p>
         </motion.div>
 

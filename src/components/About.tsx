@@ -54,7 +54,7 @@ const About = () => {
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-6 text-primary-deep">Professional Summary</h3>
                 <p className="text-foreground/80 leading-relaxed mb-6">
-                  Dynamic and performance-oriented Frontend Developer with <strong>3.5 years of experience</strong> 
+                  Dynamic and performance-oriented Frontend Developer with <strong>around 4 years of experience</strong> 
                   building scalable, high-performance web applications. Specialized in React.js, Next.js (14+), 
                   TypeScript, Tailwind CSS, and Shadcn/UI.
                 </p>
