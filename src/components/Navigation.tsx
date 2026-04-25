@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Code } from "lucide-react";
+import { Menu, X, Code, ArrowRight } from "lucide-react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef(null);
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -16,12 +18,18 @@ const Navigation = () => {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useGSAP(() => {
+    gsap.from(navRef.current, {
+      y: -100,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out"
+    });
   }, []);
 
   const scrollToSection = (href: string) => {
@@ -33,104 +41,90 @@ const Navigation = () => {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav
+      ref={navRef}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? "bg-background/80 backdrop-blur-lg shadow-medium border-b border-border/50" 
-          : "bg-transparent"
+          ? "py-4 bg-background/60 backdrop-blur-2xl border-b border-primary/10 shadow-lg" 
+          : "py-6 bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-2 cursor-pointer"
+          <div
+            className="flex items-center gap-3 cursor-pointer group"
             onClick={() => scrollToSection("#home")}
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-glow rounded-lg flex items-center justify-center">
-              <Code className="h-4 w-4 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-br from-primary-deep to-primary rounded-xl flex items-center justify-center shadow-glow group-hover:rotate-12 transition-transform duration-300">
+              <Code className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold gradient-text">Bidyut</span>
-          </motion.div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-tighter text-primary-deep leading-none">BIDYUT</span>
+              <span className="text-[10px] font-black tracking-widest text-muted-foreground uppercase opacity-60">Architect</span>
+            </div>
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-10">
             {navItems.map((item) => (
-              <motion.button
+              <button
                 key={item.name}
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.2 }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground/80 hover:text-primary-deep transition-colors duration-300 font-medium relative group"
+                className="text-sm font-bold tracking-widest uppercase text-foreground/70 hover:text-primary-deep transition-all duration-300 relative group overflow-hidden"
               >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-deep transition-all duration-300 group-hover:w-full" />
-              </motion.button>
+                <span className="relative z-10">{item.name}</span>
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary-deep transition-all duration-300 group-hover:w-full" />
+              </button>
             ))}
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Button 
               onClick={() => scrollToSection("#contact")}
-              className="bg-primary-deep hover:bg-primary-deep/90 text-white shadow-medium hover:shadow-strong transition-all duration-300"
+              className="bg-primary-deep hover:bg-primary-deep/90 text-white shadow-xl hover:shadow-primary/20 transition-all duration-500 rounded-full px-8 py-6 font-bold uppercase tracking-widest text-xs h-auto"
             >
-              Let's Talk
+              Let's Connect
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="sm"
+          <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden"
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary-deep"
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border/50"
+      {/* Mobile Navigation Overlay */}
+      <div className={`fixed inset-0 bg-background/98 backdrop-blur-3xl z-[-1] lg:hidden transition-all duration-500 flex flex-col items-center justify-center ${
+        isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+      }`}>
+        <div className="flex flex-col items-center gap-10 p-10">
+          {navItems.map((item, idx) => (
+            <button
+              key={item.name}
+              onClick={() => scrollToSection(item.href)}
+              className={`text-4xl font-black uppercase tracking-tighter hover:text-primary-deep transition-all duration-300 ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+              style={{ transitionDelay: `${idx * 100}ms` }}
+            >
+              {item.name}
+            </button>
+          ))}
+          <Button 
+            size="lg"
+            onClick={() => scrollToSection("#contact")}
+            className="bg-primary-deep text-white px-10 py-8 rounded-full text-xl font-bold mt-10"
           >
-            <div className="container mx-auto px-6 py-4">
-              <div className="flex flex-col gap-4">
-                {navItems.map((item) => (
-                  <motion.button
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    onClick={() => scrollToSection(item.href)}
-                    className="text-left text-foreground/80 hover:text-primary-deep transition-colors duration-300 font-medium py-2"
-                  >
-                    {item.name}
-                  </motion.button>
-                ))}
-                <Button 
-                  onClick={() => scrollToSection("#contact")}
-                  className="bg-primary-deep hover:bg-primary-deep/90 text-white mt-2"
-                >
-                  Let's Talk
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            Hire Me
+          </Button>
+        </div>
+      </div>
+    </nav>
   );
 };
 

@@ -1,4 +1,7 @@
-import { motion } from "framer-motion";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,6 +14,36 @@ import pokemon from "@/assets/pokemon.png";
 import projectSolvida from "@/assets/project-solvida.png";
 
 const Projects = () => {
+  const container = useRef(null);
+
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(".project-card", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    gsap.from(".projects-header", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 90%",
+      }
+    });
+  }, { scope: container });
+
   const projects = [
     {
       title: "Solvida",
@@ -75,79 +108,54 @@ const Projects = () => {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-background to-primary/5">
+    <section ref={container} id="projects" className="py-20 bg-gradient-to-br from-background to-primary/5">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-4">Featured Projects</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Showcasing innovative solutions built with modern technologies and best practices.
+        <div className="projects-header text-center mb-16">
+          <h2 className="text-4xl lg:text-6xl font-bold gradient-text mb-4">Featured Projects</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed italic">
+            Showcasing innovative digital solutions built with precision and passion.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto"
-        >
+        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <motion.div key={project.title} variants={itemVariants}>
-              <Card className="group card-gradient shadow-medium border-0 card-hover overflow-hidden h-full">
+            <div key={project.title} className="project-card">
+              <Card className="group card-gradient shadow-medium border-0 card-hover overflow-hidden h-full flex flex-col">
                 {/* Project Image */}
-                <div className="relative overflow-hidden">
-                  <motion.img
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.4 }}
+                <div className="relative overflow-hidden aspect-video">
+                  <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60`} />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-2">
-                    <div className="text-primary-deep">
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-40`} />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md rounded-xl p-3 shadow-lg transform -rotate-12 group-hover:rotate-0 transition-transform duration-500">
+                    <div className="text-primary-deep scale-125">
                       {project.icon}
                     </div>
                   </div>
                 </div>
 
-                <CardContent className="p-6">
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-primary-deep mb-2">{project.title}</h3>
-                    <p className="text-foreground/80 leading-relaxed">{project.description}</p>
+                <CardContent className="p-8 flex flex-col flex-1">
+                  <div className="mb-6">
+                    <h3 className="text-3xl font-bold text-primary-deep mb-3 group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="text-foreground/80 leading-relaxed text-lg italic line-clamp-3">
+                      {project.description}
+                    </p>
                   </div>
 
                   {/* Key Features */}
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-2 text-sm uppercase tracking-wide text-muted-foreground">
-                      Key Features
+                  <div className="mb-8">
+                    <h4 className="font-bold mb-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      Key Highlights
                     </h4>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                       {project.features.map((feature) => (
-                        <div key={feature} className="flex items-center gap-2 text-sm">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                        <div key={feature} className="flex items-center gap-2 text-sm font-medium">
+                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                           <span>{feature}</span>
                         </div>
                       ))}
@@ -155,16 +163,16 @@ const Projects = () => {
                   </div>
 
                   {/* Technologies */}
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-2 text-sm uppercase tracking-wide text-muted-foreground">
-                      Technologies
+                  <div className="mb-8 mt-auto">
+                    <h4 className="font-bold mb-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      Stack
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
                         <Badge
                           key={tech}
                           variant="secondary"
-                          className="px-2 py-1 text-xs bg-primary/10 text-primary-deep hover:bg-primary/20 transition-colors duration-300"
+                          className="px-3 py-1 text-xs font-semibold bg-primary/5 text-primary-deep border border-primary/10 hover:bg-primary/20 transition-all duration-300"
                         >
                           {tech}
                         </Badge>
@@ -173,31 +181,30 @@ const Projects = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-3 pt-4 border-t border-border/50">
+                  <div className="flex gap-4 pt-6 border-t border-border/30">
                     <Button
-                      size="sm"
-                      className="flex-1 bg-primary-deep hover:bg-primary-deep/90 text-white"
-
-                      onClick={() => project.url ? window.location.href = project.url : ''}
+                      size="lg"
+                      className="flex-1 bg-primary-deep hover:bg-primary-deep/90 text-white rounded-full font-bold shadow-medium hover:shadow-strong transition-all duration-300"
+                      onClick={() => project.url ? window.open(project.url, "_blank") : ''}
                     >
-                      <ExternalLink className="mr-2 h-4 w-4" />
+                      <ExternalLink className="mr-2 h-5 w-5" />
                       Live Demo
                     </Button>
                     <Button
                       variant="outline"
-                      size="sm"
-                      className="flex-1 border-primary-deep text-primary-deep hover:bg-primary-deep hover:text-white"
-                      onClick={() => project.gitUrl ? window.location.href = project.gitUrl : ''}
+                      size="lg"
+                      className="flex-1 border-2 border-primary-deep text-primary-deep hover:bg-primary-deep hover:text-white rounded-full font-bold transition-all duration-300"
+                      onClick={() => project.gitUrl ? window.open(project.gitUrl, "_blank") : ''}
                     >
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
+                      <Github className="mr-2 h-5 w-5" />
+                      Source
                     </Button>
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
