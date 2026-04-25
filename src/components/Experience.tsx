@@ -136,7 +136,7 @@ const Experience = () => {
           {/* Vertical Timeline Line */}
           <div className="timeline-line absolute left-4 lg:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary via-primary/50 to-transparent hidden lg:block" />
 
-          {experiences.map((exp, index) => (
+          {experiences?.map((exp, index) => (
             <div 
               key={index} 
               className={`exp-card relative mb-16 lg:mb-24 flex items-center justify-center lg:justify-between w-full ${
@@ -175,7 +175,7 @@ const Experience = () => {
                     </div>
 
                     <ul className="space-y-3 mb-8">
-                      {exp.achievements.map((achievement, i) => (
+                      {exp.achievements?.map((achievement, i) => (
                         <li key={i} className="flex items-start gap-3 group/item">
                           <div className="mt-1.5 flex-shrink-0">
                             <Star className="h-3 w-3 text-primary-deep group-hover/item:scale-125 transition-transform" />
@@ -188,7 +188,7 @@ const Experience = () => {
                     </ul>
 
                     <div className="flex flex-wrap gap-2 pt-6 border-t border-white/10">
-                      {exp.technologies.map((tech) => (
+                      {exp.technologies?.map((tech) => (
                         <Badge 
                           key={tech} 
                           variant="secondary" 

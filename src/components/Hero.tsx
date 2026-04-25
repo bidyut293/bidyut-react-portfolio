@@ -80,19 +80,45 @@ const Hero = () => {
       }
     });
 
+    // Extraordinary Reveal Animation for Title
+    gsap.to(titleRef.current, {
+      backgroundSize: "100% 100%",
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 20%",
+        end: "top -20%",
+        scrub: 1,
+      }
+    });
+
+    // Image Clip-path & Scale Reveal
+    gsap.fromTo(".hero-image-wrapper", 
+      { clipPath: "inset(20% 20% 20% 20% round 50px)", scale: 0.8 },
+      { 
+        clipPath: "inset(0% 0% 0% 0% round 30px)", 
+        scale: 1,
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        }
+      }
+    );
+
     // Floating animation for background orbs
     gsap.to(".bg-orb-1", {
-      x: 100,
-      y: 50,
-      duration: 20,
+      x: 300,
+      y: 200,
+      duration: 15,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut"
     });
     gsap.to(".bg-orb-2", {
-      x: -150,
-      y: -80,
-      duration: 25,
+      x: -300,
+      y: -200,
+      duration: 18,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut"
@@ -119,7 +145,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <div className="hero-content space-y-6">
-            <h1 ref={titleRef} className="text-6xl lg:text-8xl font-bold gradient-text text-shadow leading-tight">
+            <h1 ref={titleRef} className="reveal-text text-6xl lg:text-9xl font-black text-shadow leading-none tracking-tighter">
               Bidyut Samanta
             </h1>
             
@@ -172,9 +198,9 @@ const Hero = () => {
 
           {/* Profile Image */}
           <div className="flex justify-center lg:justify-end relative">
-            <div className="relative group">
+            <div className="relative group hero-image-wrapper">
               <div className="absolute -inset-10 bg-gradient-to-r from-primary/30 to-primary-glow/30 rounded-full blur-[80px] animate-pulse" />
-              <div className="relative z-10 w-80 h-80 lg:w-[450px] lg:h-[450px] rounded-[30px] overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm transform hover:rotate-2 transition-transform duration-500">
+              <div className="relative z-10 w-80 h-80 lg:w-[500px] lg:h-[500px] overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
                 <img
                   ref={imageRef}
                   src={profilePhoto}

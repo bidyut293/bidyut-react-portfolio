@@ -29,7 +29,7 @@ const Footer = () => {
                 { icon: <Linkedin className="h-5 w-5" />, href: "https://linkedin.com/in/bidyut-samanta-82706b205" },
                 { icon: <Github className="h-5 w-5" />, href: "https://github.com/bidyut293" },
                 { icon: <Mail className="h-5 w-5" />, href: "mailto:bidyutsamanta293@gmail.com" }
-              ].map((social, idx) => (
+              ]?.map((social, idx) => (
                 <a 
                   key={idx}
                   href={social.href}
@@ -47,7 +47,7 @@ const Footer = () => {
           <div className="space-y-6">
             <h4 className="text-white font-bold uppercase tracking-widest text-sm">Navigation</h4>
             <ul className="space-y-4">
-              {["Home", "About", "Experience", "Projects", "Contact"].map((item) => (
+              {["Home", "About", "Experience", "Projects", "Contact"]?.map((item) => (
                 <li key={item}>
                   <a 
                     href={`#${item.toLowerCase()}`} 

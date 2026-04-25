@@ -33,6 +33,22 @@ const About = () => {
       }
     });
 
+    // Apple-style Text Reveal
+    const lines = gsap.utils.toArray(".reveal-line");
+    lines.forEach((line: any) => {
+      gsap.to(line, {
+        opacity: 1,
+        color: "#0c1538", // Raw hex value of primary-deep for GSAP compatibility
+        duration: 1,
+        scrollTrigger: {
+          trigger: line,
+          start: "top 80%",
+          end: "top 40%",
+          scrub: true,
+        }
+      });
+    });
+
     gsap.from(".skill-badge", {
       scale: 0,
       opacity: 0,
@@ -95,10 +111,11 @@ const About = () => {
                     <h3 className="text-4xl lg:text-5xl font-bold text-primary-deep leading-tight">
                       Crafting innovative solutions through code.
                     </h3>
-                    <p className="text-lg text-foreground/80 leading-relaxed">
-                      With over 4 years of professional experience, I specialize in building high-performance, 
-                      user-centric applications. My expertise lies in <span className="font-bold text-primary-deep underline decoration-primary/20">Next.js and TypeScript</span>, 
-                      integrated with robust backend architectures.
+                    <p className="text-2xl lg:text-3xl text-foreground/40 leading-tight font-medium space-y-4">
+                      <span className="reveal-line block italic">With over 4 years of professional experience,</span>
+                      <span className="reveal-line block">I specialize in building high-performance, user-centric applications.</span>
+                      <span className="reveal-line block">My expertise lies in <span className="font-bold underline decoration-primary/20">Next.js and TypeScript</span>,</span>
+                      <span className="reveal-line block">integrated with robust backend architectures and scalable APIs.</span>
                     </p>
                     
                     <div className="flex flex-wrap gap-6 text-muted-foreground">
@@ -124,7 +141,7 @@ const About = () => {
                         Core Technology Stack
                       </h4>
                       <div className="skills-container flex flex-wrap gap-3">
-                        {skills.map((skill) => (
+                        {skills?.map((skill) => (
                           <div key={skill} className="skill-badge">
                             <Badge 
                               variant="secondary" 
@@ -145,7 +162,7 @@ const About = () => {
           {/* Stats Grid */}
           <div className="lg:col-span-12 mt-12">
             <div className="stats-grid grid grid-cols-2 lg:grid-cols-4 gap-6">
-              {stats.map((stat, index) => (
+              {stats?.map((stat, index) => (
                 <div key={stat.label} className="stat-card">
                   <Card className="border-0 shadow-xl bg-white/5 backdrop-blur-md hover:bg-white/10 transition-colors duration-500 rounded-[30px] group overflow-hidden relative">
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">

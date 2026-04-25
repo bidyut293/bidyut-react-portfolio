@@ -110,7 +110,7 @@ const Contact = () => {
             </div>
 
             <div className="grid gap-6">
-              {contactInfo.map((item, idx) => (
+              {contactInfo?.map((item, idx) => (
                 <a 
                   key={idx} 
                   href={item.href}

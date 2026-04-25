@@ -67,7 +67,7 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-10">
-            {navItems.map((item) => (
+            {navItems?.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
@@ -105,7 +105,7 @@ const Navigation = () => {
         isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
       }`}>
         <div className="flex flex-col items-center gap-10 p-10">
-          {navItems.map((item, idx) => (
+          {navItems?.map((item, idx) => (
             <button
               key={item.name}
               onClick={() => scrollToSection(item.href)}

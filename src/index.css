@@ -201,3 +201,88 @@ html.lenis {
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary-deep) / 0.4);
 }
+
+/* Apple-style Reveal Animations */
+.reveal-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: rgba(255, 255, 255, 0.1);
+  background-image: linear-gradient(to right, white, white);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+}
+
+.section-pin {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  width: fit-content;
+  flex-wrap: nowrap;
+}
+
+.horizontal-item {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Page Background Color Transition */
+body {
+  transition: background-color 1s ease;
+}
+
+.theme-transition {
+  transition: background-color 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Moving Gradient Mesh */
+.mesh-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #ffffff;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(231, 81%, 90%, 0.5) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(250, 84%, 85%, 0.5) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(270, 75%, 90%, 0.5) 0, transparent 50%), 
+    radial-gradient(at 0% 100%, hsla(231, 81%, 90%, 0.5) 0, transparent 50%), 
+    radial-gradient(at 50% 100%, hsla(250, 84%, 85%, 0.5) 0, transparent 50%), 
+    radial-gradient(at 100% 100%, hsla(270, 75%, 90%, 0.5) 0, transparent 50%);
+  filter: blur(100px);
+  opacity: 0.5;
+  animation: mesh-move 20s infinite alternate;
+}
+
+@keyframes mesh-move {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.2) translate(50px, 30px); }
+  100% { transform: scale(1) translate(-50px, -30px); }
+}
+
+/* Big Image Reveal */
+.image-reveal-container {
+  clip-path: circle(0% at 50% 50%);
+}
+
+
+.reveal-line {
+  opacity: 0.1;
+  transition: opacity 0.5s ease;
+}
+
+.reveal-line.active {
+  opacity: 1;
+}
