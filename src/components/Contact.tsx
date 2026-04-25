@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Linkedin, Github, Send, MessageCircle, Code } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Send, MessageCircle, Code, CheckCircle2 } from "lucide-react";
+import { toast } from "sonner";
 
 const Contact = () => {
   const contactInfo = [
@@ -52,7 +54,40 @@ const Contact = () => {
       href: "mailto:bidyutsamanta293@gmail.com",
       color: "hover:text-red-600"
     }
-  ];
+  ]
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formId = "mvzdllbr";
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${formId}`, {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setIsSent(true);
+        toast.success("Message sent successfully!");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Failed to send message. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setIsSent(false), 5000);
+    }
+  };
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-primary/5 to-background">
@@ -85,9 +120,9 @@ const Contact = () => {
                   <MessageCircle className="h-6 w-6 text-primary-deep" />
                   <h3 className="text-2xl font-bold text-primary-deep">Let's Connect</h3>
                 </div>
-                
+
                 <p className="text-foreground/80 leading-relaxed mb-8">
-                  I'm always open to discussing new opportunities, interesting projects, 
+                  I'm always open to discussing new opportunities, interesting projects,
                   or just having a friendly chat about technology and development.
                 </p>
 
@@ -148,19 +183,23 @@ const Contact = () => {
                   <h3 className="text-2xl font-bold text-primary-deep">Send Message</h3>
                 </div>
 
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium mb-2">First Name</label>
-                      <Input 
-                        placeholder="John" 
+                      <Input
+                        name="first_name"
+                        required
+                        placeholder="John"
                         className="border-primary/20 focus:border-primary-deep focus:ring-primary-deep/20"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Last Name</label>
-                      <Input 
-                        placeholder="Doe" 
+                      <Input
+                        name="last_name"
+                        required
+                        placeholder="Doe"
                         className="border-primary/20 focus:border-primary-deep focus:ring-primary-deep/20"
                       />
                     </div>
@@ -168,38 +207,62 @@ const Contact = () => {
 
                   <div>
                     <label className="block text-sm font-medium mb-2">Email</label>
-                    <Input 
-                      type="email" 
-                      placeholder="john@example.com" 
+                    <Input
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="john@example.com"
                       className="border-primary/20 focus:border-primary-deep focus:ring-primary-deep/20"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium mb-2">Subject</label>
-                    <Input 
-                      placeholder="Project Discussion" 
+                    <Input
+                      name="subject"
+                      required
+                      placeholder="Project Discussion"
                       className="border-primary/20 focus:border-primary-deep focus:ring-primary-deep/20"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium mb-2">Message</label>
-                    <Textarea 
-                      placeholder="Tell me about your project..." 
+                    <Textarea
+                      name="message"
+                      required
+                      placeholder="Tell me about your project..."
                       rows={6}
                       className="border-primary/20 focus:border-primary-deep focus:ring-primary-deep/20 resize-none"
                     />
                   </div>
 
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button 
-                      type="submit" 
-                      size="lg" 
-                      className="w-full bg-primary-deep hover:bg-primary-deep/90 text-white shadow-medium hover:shadow-strong transition-all duration-300"
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting || isSent}
+                      size="lg"
+                      className={`w-full transition-all duration-300 ${isSent
+                        ? "bg-green-600 hover:bg-green-700"
+                        : "bg-primary-deep hover:bg-primary-deep/90"
+                        } text-white shadow-medium hover:shadow-strong`}
                     >
-                      <Send className="mr-2 h-4 w-4" />
-                      Send Message
+                      {isSubmitting ? (
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending...
+                        </div>
+                      ) : isSent ? (
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 className="h-4 w-4" />
+                          Message Sent!
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          <Send className="h-4 w-4" />
+                          Send Message
+                        </div>
+                      )}
                     </Button>
                   </motion.div>
                 </form>
