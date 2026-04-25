@@ -52,7 +52,7 @@ const Hero = () => {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="text-lg text-foreground/80 leading-relaxed max-w-xl"
             >
-              Around 4 years of crafting beautiful, high-performance web applications with{" "}
+              Over 4 years of crafting beautiful, high-performance web applications with{" "}
               <span className="font-semibold text-primary-deep">React.js</span>,{" "}
               <span className="font-semibold text-primary-deep">Next.js</span>, and{" "}
               <span className="font-semibold text-primary-deep">TypeScript</span>

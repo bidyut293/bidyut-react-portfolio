@@ -6,6 +6,20 @@ import { Calendar, MapPin, Briefcase } from "lucide-react";
 const Experience = () => {
   const experiences = [
     {
+      title: "Full Stack Developer",
+      company: "AUWAVE",
+      location: "Remote",
+      period: "Jul 2025 – Apr 2026",
+      type: "Full-time",
+      achievements: [
+        "Spearheaded the end-to-end development of Solvida, a premium cryptocurrency and asset management dashboard using Next.js",
+        "Engineered a robust Full-Stack architecture with ToTheMoon configuration, ensuring high performance and secure transaction workflows",
+        "Managed the entire development lifecycle with daily updates and agile sprint planning, leading to a 100% successful project delivery",
+        "Implemented real-time market data and interactive financial visualizations using Lightweight Charts and WebSocket"
+      ],
+      technologies: ["Next.js", "Node.js", "ToTheMoon Config", "MongoDB", "TypeScript", "WebSocket", "Lightweight Charts", "Tailwind CSS"]
+    },
+    {
       title: "Frontend Developer",
       company: "Freelancing",
       location: "Remote",
@@ -90,7 +104,7 @@ const Experience = () => {
         >
           <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-4">Professional Experience</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Around 4 years of building exceptional web applications across diverse industries and company sizes.
+            Over 4 years of building exceptional web applications across diverse industries and company sizes.
           </p>
         </motion.div>
 

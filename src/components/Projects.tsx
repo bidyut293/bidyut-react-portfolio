@@ -8,9 +8,20 @@ import projectEacel from "@/assets/project-eacel.png";
 import projectCircle from "@/assets/project-circle.png";
 import movieBooking from "@/assets/movie-booking.png";
 import pokemon from "@/assets/pokemon.png";
+import projectSolvida from "@/assets/project-solvida.png";
 
 const Projects = () => {
   const projects = [
+    {
+      title: "Solvida",
+      description: "A state-of-the-art cryptocurrency and asset management platform featuring real-time market analytics via WebSockets and ToTheMoon configuration.",
+      image: projectSolvida,
+      technologies: ["Next.js", "Node.js", "TypeScript", "WebSocket", "Lightweight Charts", "ToTheMoon Config"],
+      features: ["Real-time market data", "Interactive portfolio charts", "Secure transaction management", "Premium UI/UX"],
+      icon: <TrendingUp className="h-6 w-6" />,
+      gradient: "from-amber-500/20 to-yellow-500/20",
+      url: 'https://solvida.com/'
+    },
     {
       title: "Gleans",
       description: "Real-time notification system with modern UI built using Next.js 14, TypeScript, and Supabase. Features responsive design, Twilio integration, and optimized performance.",
@@ -52,16 +63,16 @@ const Projects = () => {
       // url: 'https://www.thecircleof.co.uk/'
     },
     {
-    title: "Pokémon Search App",
-    description: "Fast Pokémon search app built in 5 hours using Next.js 14, Tailwind CSS, and Framer Motion. Search and filter Pokémon by name or attributes, view detailed descriptions, with SEO optimization, lazy loading, and dark/light theme support.",
-    image: pokemon, // Placeholder, replace with actual image
-    technologies: ["Next.js 14", "Tailwind CSS", "Framer Motion", "TypeScript"],
-    features: ["Search by name/attributes", "Detailed Pokémon info", "SEO optimization", "Lazy loading", "Dark/light theme", "Mobile responsive"],
-    icon: <Rocket className="h-6 w-6" />,
-    gradient: "from-indigo-500/20 to-cyan-500/20",
-    url: 'https://pokemon-app-pmuz-bidyut293s-projects.vercel.app/', // Replace with actual URL
-    gitUrl: 'https://github.com/bidyut293/pokemon-app'
-  }
+      title: "Pokémon Search App",
+      description: "Fast Pokémon search app built in 5 hours using Next.js 14, Tailwind CSS, and Framer Motion. Search and filter Pokémon by name or attributes, view detailed descriptions, with SEO optimization, lazy loading, and dark/light theme support.",
+      image: pokemon, // Placeholder, replace with actual image
+      technologies: ["Next.js 14", "Tailwind CSS", "Framer Motion", "TypeScript"],
+      features: ["Search by name/attributes", "Detailed Pokémon info", "SEO optimization", "Lazy loading", "Dark/light theme", "Mobile responsive"],
+      icon: <Rocket className="h-6 w-6" />,
+      gradient: "from-indigo-500/20 to-cyan-500/20",
+      url: 'https://pokemon-app-pmuz-bidyut293s-projects.vercel.app/', // Replace with actual URL
+      gitUrl: 'https://github.com/bidyut293/pokemon-app'
+    }
   ];
 
   const containerVariants = {
@@ -150,9 +161,9 @@ const Projects = () => {
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
-                        <Badge 
-                          key={tech} 
-                          variant="secondary" 
+                        <Badge
+                          key={tech}
+                          variant="secondary"
                           className="px-2 py-1 text-xs bg-primary/10 text-primary-deep hover:bg-primary/20 transition-colors duration-300"
                         >
                           {tech}
@@ -163,18 +174,18 @@ const Projects = () => {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3 pt-4 border-t border-border/50">
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       className="flex-1 bg-primary-deep hover:bg-primary-deep/90 text-white"
-                      
+
                       onClick={() => project.url ? window.location.href = project.url : ''}
                     >
                       <ExternalLink className="mr-2 h-4 w-4" />
                       Live Demo
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
+                    <Button
+                      variant="outline"
+                      size="sm"
                       className="flex-1 border-primary-deep text-primary-deep hover:bg-primary-deep hover:text-white"
                       onClick={() => project.gitUrl ? window.location.href = project.gitUrl : ''}
                     >

@@ -5,9 +5,9 @@ import { MapPin, GraduationCap, Trophy, Globe } from "lucide-react";
 
 const About = () => {
   const skills = [
-    "React.js", "Next.js", "Javascript", "TypeScript", "Redux Toolkit", "Zustand", "Tailwind CSS", 
-    "Shadcn/UI", "Framer Motion", "Material UI", "Node.js", "Express.js", "MongoDB", "Jest", "React Testing Library",
-    "GraphQL", "REST APIs", "Stripe", "Twilio", "Git", "Vercel", "Azure DevOps"
+    "Next.js", "Javascript", "TypeScript", "Redux Toolkit", "Zustand", "Tailwind CSS", 
+    "Shadcn/UI", "Framer Motion", "Material UI", "Node.js", "Express.js", "MongoDB", "Jest", 
+    "GraphQL", "REST APIs", "WebSocket", "Lightweight Charts", "Stripe", "Twilio", "Git", "Vercel"
   ];
 
   const containerVariants = {
@@ -54,7 +54,7 @@ const About = () => {
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-6 text-primary-deep">Professional Summary</h3>
                 <p className="text-foreground/80 leading-relaxed mb-6">
-                  Dynamic and performance-oriented Frontend Developer with <strong>around 4 years of experience</strong> 
+                  Dynamic and performance-oriented Frontend Developer with <strong>over 4 years of experience</strong> 
                   building scalable, high-performance web applications. Specialized in React.js, Next.js (14+), 
                   TypeScript, Tailwind CSS, and Shadcn/UI.
                 </p>
